@@ -3,7 +3,8 @@
 ## 📌 Project Overview
 This project focuses on predicting whether a **vehicle insurance claim** will be made based on **policyholder details, vehicle specifications, safety features, and location factors**.  
 The goal is to help insurance companies **assess risk, reduce losses, and optimize premium pricing** using data-driven insights.
-Deployment Link : https://vehicle-insurance-prediction-ml-project-sunbeam--internship.streamlit.app/
+
+**Deployment Link** : https://vehicle-insurance-prediction-ml-project-sunbeam--internship.streamlit.app/
 ---
 
 ## 🎯 Problem Statement
