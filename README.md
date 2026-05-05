@@ -1,61 +1,339 @@
-# 🚗 Vehicle Insurance Claim Prediction using Machine Learning
+# 🚗 Vehicle Insurance Claim Prediction
 
-## 📌 Project Overview
-This project focuses on predicting whether a **vehicle insurance claim** will be made based on **policyholder details, vehicle specifications, safety features, and location factors**.  
-The goal is to help insurance companies **assess risk, reduce losses, and optimize premium pricing** using data-driven insights.
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://vehicle-insurance-prediction-ml-project-sunbeam--internship.streamlit.app/)
+![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3+-orange?logo=scikit-learn&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.35+-red?logo=streamlit&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-**Deployment Link** : https://vehicle-insurance-prediction-ml-project-sunbeam--internship.streamlit.app/
----
-
-## 🎯 Problem Statement
-Insurance companies face significant losses due to inaccurate risk assessment.  
-This project builds a **machine learning classification model** to predict:
-
-> **Will an insurance claim be filed? (Yes / No)**
+> A machine learning web application that predicts whether a vehicle insurance policy will result in a claim, based on policyholder details, vehicle specifications, and safety features.
 
 ---
 
-## 📊 Dataset Description
-The dataset contains real-world insurance-related attributes including:
+## 🔗 Live Demo
 
-- Policyholder information (age, policy tenure)
-- Vehicle details (segment, fuel type, engine type, dimensions)
-- Safety features (brake assist, airbags, fog lights, etc.)
-- Location factors (area cluster, population density)
-- Target variable: **`is_claim`**
-
-**Target Variable**
-- `0` → No Claim  
-- `1` → Claim  
+**[👉 Click here to open the App](https://vehicle-insurance-prediction-ml-project-sunbeam--internship.streamlit.app/)**
 
 ---
 
-## 🛠️ Technologies & Tools Used
+## 📸 Screenshots
 
-- **Programming Language:** Python  
-- **Libraries:**  
-  - pandas  
-  - numpy  
-  - scikit-learn  
-  - matplotlib / seaborn  
-- **Visualization Tool:** Tableau Public  
-- **IDE:** VS Code / Jupyter Notebook  
-- **Version Control:** Git & GitHub  
+> _Add screenshots of your app here once deployed._
 
 ---
 
-## 🧪 Machine Learning Approach
+## 📌 Table of Contents
 
-1. Data Cleaning & Preprocessing  
-2. Handling categorical & numerical features  
-3. Exploratory Data Analysis (EDA)  
-4. Feature Engineering  
-5. Model Training (Classification)  
-6. Model Evaluation  
-
-**Models Used:**
-- Decision Tree Classifier  
+- [Overview](#-overview)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [ML Pipeline](#-ml-pipeline)
+- [Installation & Local Setup](#-installation--local-setup)
+- [Deployment on Streamlit Cloud](#-deployment-on-streamlit-cloud)
+- [Model Details](#-model-details)
+- [Feature Description](#-feature-description)
+- [Results](#-results)
+- [Contributing](#-contributing)
 
 ---
 
+## 🧠 Overview
 
+This project is a supervised binary classification system built to predict insurance claim likelihood (`is_claim`: 0 or 1) using a real-world vehicle insurance dataset.
+
+The pipeline includes:
+- Extensive feature engineering (torque/power RPM ratios, string parsing)
+- SMOTE oversampling to handle class imbalance
+- StandardScaler normalization
+- Training & evaluation of 4 classifiers
+- A Streamlit web interface for live predictions
+
+---
+
+## ✨ Features
+
+- 📋 **91 input features** including one-hot encoded categoricals
+- ⚖️ **SMOTE** oversampling for balanced training
+- 🏆 **Decision Tree** selected as best model after comparison
+- 🔮 **Live predictions** via an interactive Streamlit UI
+- 🛡️ 17 binary safety feature toggles
+- 📊 Input summary table & raw debug vector view
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Language | Python 3.10+ |
+| ML Framework | scikit-learn, imbalanced-learn |
+| Web App | Streamlit |
+| Data | pandas, NumPy |
+| Visualization | seaborn, matplotlib |
+| Model Persistence | joblib |
+
+---
+
+## 📁 Project Structure
+
+```
+vehicle-insurance-prediction/
+│
+├── app.py                          # Streamlit web application
+├── Vehicle_Insurance_Prediction.ipynb  # Model training notebook
+├── insurance_bundle.pkl            # Saved model + scaler + feature list
+├── dataset.csv                     # Raw dataset (not committed to git)
+├── requirements.txt                # Python dependencies
+├── .gitignore
+└── README.md
+```
+
+---
+
+## ⚙️ ML Pipeline
+
+```
+Raw CSV Dataset
+      │
+      ▼
+Data Cleaning (dropna, fillna)
+      │
+      ▼
+Feature Engineering
+  ├── Extract torque (Nm) & RPM from string
+  ├── Extract power (bhp) & RPM from string
+  ├── Compute torque_rpm_ratio & power_rpm_ratio
+  └── Clean population_density (remove symbols)
+      │
+      ▼
+Label Encoding → all categorical columns
+      │
+      ▼
+One-Hot Encoding (get_dummies, drop_first=True)
+  └── segment, area_cluster, model, fuel_type,
+      engine_type, rear_brakes_type,
+      transmission_type, steering_type
+      │
+      ▼
+Train/Test Split (80/20, random_state=42)
+      │
+      ▼
+StandardScaler (fit on train, transform both)
+      │
+      ▼
+SMOTE Oversampling (on training set only)
+      │
+      ▼
+Model Training & Evaluation
+  ├── Logistic Regression (CV)
+  ├── KNN (k=100)
+  ├── SVM (RBF kernel)
+  └── Decision Tree ✅ (selected)
+      │
+      ▼
+Save Bundle → insurance_bundle.pkl
+  ├── model (DecisionTreeClassifier)
+  ├── scaler (StandardScaler)
+  └── feature_columns (list of 91 features)
+```
+
+---
+
+## 💻 Installation & Local Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/vehicle-insurance-prediction.git
+cd vehicle-insurance-prediction
+```
+
+### 2. Create a Virtual Environment
+
+```bash
+python -m venv venv
+
+# Activate (Windows)
+venv\Scripts\activate
+
+# Activate (macOS/Linux)
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Add Required Files
+
+Place the following files in the project root:
+- `insurance_bundle.pkl` — generated by running the notebook
+- `dataset.csv` — your raw dataset (only needed for retraining)
+
+> **To regenerate `insurance_bundle.pkl`**, run all cells in `Vehicle_Insurance_Prediction.ipynb`.
+
+### 5. Run the App
+
+```bash
+streamlit run app.py
+```
+
+The app will open at `http://localhost:8501`
+
+---
+
+## 🚀 Deployment on Streamlit Cloud
+
+Follow these steps to deploy the app for free on [Streamlit Community Cloud](https://streamlit.io/cloud):
+
+### Step 1 — Push to GitHub
+
+Make sure your repo has the following files committed:
+```
+app.py
+requirements.txt
+insurance_bundle.pkl   ← required (use git add -f if ignored)
+```
+
+```bash
+git add app.py requirements.txt
+git add -f insurance_bundle.pkl     # force-add since .pkl is in .gitignore
+git commit -m "feat: add streamlit app and model bundle"
+git push origin main
+```
+
+> ⚠️ If `insurance_bundle.pkl` is large (>100 MB), use [Git LFS](https://git-lfs.com/) instead.
+
+### Step 2 — Connect to Streamlit Cloud
+
+1. Go to [share.streamlit.io](https://share.streamlit.io)
+2. Sign in with your GitHub account
+3. Click **"New app"**
+4. Select:
+   - **Repository**: `your-username/vehicle-insurance-prediction`
+   - **Branch**: `main`
+   - **Main file path**: `app.py`
+5. Click **"Deploy"**
+
+### Step 3 — Configure (if needed)
+
+If your app uses secrets (API keys, DB URIs), add them via:
+
+**Streamlit Cloud → App Settings → Secrets**
+
+```toml
+# .streamlit/secrets.toml (local only, never commit this)
+[general]
+SOME_API_KEY = "your-key-here"
+```
+
+### Step 4 — Done 🎉
+
+Your app will be live at:
+```
+https://<your-app-name>.streamlit.app/
+```
+
+---
+
+## 📊 Model Details
+
+| Model | Accuracy | Precision | Recall | F1 Score |
+|---|---|---|---|---|
+| Logistic Regression (CV) | — | — | — | — |
+| KNN (k=100) | — | — | — | — |
+| SVM (RBF) | — | — | — | — |
+| **Decision Tree** ✅ | **Best** | — | — | — |
+
+> Fill in your actual metric values from the notebook output.
+
+**Selected Model:** `DecisionTreeClassifier(random_state=42)`  
+**Reason:** Best overall F1 score on imbalanced insurance claim data after SMOTE resampling.
+
+---
+
+## 📋 Feature Description
+
+### Policy & Holder
+| Feature | Description |
+|---|---|
+| `policy_tenure` | Duration of policy in years |
+| `age_of_car` | Age of the insured vehicle (years) |
+| `age_of_policyholder` | Age of the policyholder |
+| `population_density` | Population density of the area |
+
+### Vehicle Specs
+| Feature | Description |
+|---|---|
+| `make` | Encoded car brand |
+| `displacement` | Engine displacement in cc |
+| `cylinder` | Number of engine cylinders |
+| `gear_box` | Number of gears |
+| `turning_radius` | Turning radius in metres |
+| `Length / width / height` | Vehicle dimensions in mm |
+| `Gross_weight` | Gross vehicle weight in kg |
+| `airbags` | Number of airbags |
+| `ncap_rating` | NCAP safety rating (0–5) |
+
+### Engine Performance (Derived)
+| Feature | Description |
+|---|---|
+| `torque` | Torque extracted from string (Nm) |
+| `rpm_T` | RPM at which torque is produced |
+| `power` | Power extracted from string (bhp) |
+| `rpm_P` | RPM at which power is produced |
+| `torque_rpm_ratio` | `torque / rpm_T` |
+| `power_rpm_ratio` | `power / rpm_P` |
+
+### Safety Features (Binary 0/1)
+`is_esc`, `is_adjustable_steering`, `is_tpms`, `is_parking_sensors`, `is_parking_camera`, `is_front_fog_lights`, `is_rear_window_wiper`, `is_rear_window_washer`, `is_rear_window_defogger`, `is_brake_assist`, `is_power_door_locks`, `is_central_locking`, `is_power_steering`, `is_driver_seat_height_adjustable`, `is_day_night_rear_view_mirror`, `is_ecw`, `is_speed_alert`
+
+### Encoded Categoricals (One-Hot)
+`segment`, `area_cluster`, `model`, `fuel_type`, `engine_type`, `rear_brakes_type`, `transmission_type`, `steering_type`
+
+---
+
+## 📦 requirements.txt
+
+```
+streamlit>=1.35.0
+scikit-learn>=1.3.0
+imbalanced-learn>=0.11.0
+pandas>=2.0.0
+numpy>=1.24.0
+joblib>=1.3.0
+seaborn>=0.12.0
+matplotlib>=3.7.0
+```
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+1. Fork the repo
+2. Create your feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'feat: add your feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+**Your Name**  
+Final Year Computer Science Student  
+Sunbeam Institute — Internship Project  
+
+[![GitHub](https://img.shields.io/badge/GitHub-your--username-black?logo=github)](https://github.com/your-username)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)](https://linkedin.com/in/your-profile)
