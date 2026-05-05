@@ -16,12 +16,6 @@
 
 ---
 
-## 📸 Screenshots
-
-> _Add screenshots of your app here once deployed._
-
----
-
 ## 📌 Table of Contents
 
 - [Overview](#-overview)
