@@ -47,9 +47,7 @@ Pipfile.lock
 # ──────────────────────────────────────────────
 # ML MODEL FILES (large binaries — use DVC/Git LFS instead)
 # ──────────────────────────────────────────────
-*.pkl
-*.pickle
-*.joblib
+
 *.h5
 *.hdf5
 *.pt
