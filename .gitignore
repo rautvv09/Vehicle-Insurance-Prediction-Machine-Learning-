@@ -1,13 +1,188 @@
-# Jupyter Notebook checkpoints
+# ──────────────────────────────────────────────
+# JUPYTER NOTEBOOK
+# ──────────────────────────────────────────────
 .ipynb_checkpoints/
 */.ipynb_checkpoints/*
-
-# Python cache files
-__pycache__/
-*.pyc
-
-# Jupyter Notebook hidden files
 *.checkpoint.ipynb
+*.nbconvert.ipynb
+profile_default/
+ipython_config.py
 
-# CatBoost training logs
+# ──────────────────────────────────────────────
+# PYTHON
+# ──────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+MANIFEST
+
+# ──────────────────────────────────────────────
+# VIRTUAL ENVIRONMENTS
+# ──────────────────────────────────────────────
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+pipenv/
+Pipfile.lock
+
+# ──────────────────────────────────────────────
+# ML MODEL FILES (large binaries — use DVC/Git LFS instead)
+# ──────────────────────────────────────────────
+*.pkl
+*.pickle
+*.joblib
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.onnx
+*.pb
+*.tflite
+*.cbm
 catboost_info/
+
+# ──────────────────────────────────────────────
+# DATASET FILES
+# ──────────────────────────────────────────────
+*.csv
+*.xlsx
+*.xls
+*.json
+*.parquet
+*.feather
+*.db
+*.sqlite
+*.sqlite3
+data/
+datasets/
+raw/
+processed/
+
+# ──────────────────────────────────────────────
+# STREAMLIT
+# ──────────────────────────────────────────────
+.streamlit/secrets.toml
+
+# ──────────────────────────────────────────────
+# ENVIRONMENT & SECRETS
+# ──────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.toml
+config.yaml
+credentials.json
+
+# ──────────────────────────────────────────────
+# LOGS & OUTPUTS
+# ──────────────────────────────────────────────
+*.log
+logs/
+outputs/
+results/
+reports/
+figures/
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.gif
+
+# ──────────────────────────────────────────────
+# OS FILES
+# ──────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ──────────────────────────────────────────────
+# IDEs & EDITORS
+# ──────────────────────────────────────────────
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ──────────────────────────────────────────────
+# REACT / NEXT.JS (if frontend exists in repo)
+# ──────────────────────────────────────────────
+node_modules/
+.next/
+out/
+build/
+.cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.npm
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.pnp.*
+*.tsbuildinfo
+next-env.d.ts
+
+# ──────────────────────────────────────────────
+# FLASK / FASTAPI (if backend exists in repo)
+# ──────────────────────────────────────────────
+instance/
+.webassets-cache
+uploads/
+static/uploads/
+flask_session/
+
+# ──────────────────────────────────────────────
+# TESTING & COVERAGE
+# ──────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+nosetests.xml
+test-results/
+.tox/
+.nox/
+
+# ──────────────────────────────────────────────
+# MISCELLANEOUS
+# ──────────────────────────────────────────────
+*.bak
+*.tmp
+*.temp
+.cache/
+tmp/
+temp/
